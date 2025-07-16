@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router-dom';
 const Login = () => {
   const [emailId, setEmailId] = useState("travis@head.com")
   const [password, setPassword] = useState("Akhil@123")
+  const [errorMessage, setErrorMessage] = useState("")
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const handleLoginSubmit = async (e) => {
@@ -17,40 +18,30 @@ const Login = () => {
       const res = await axios.post("http://localhost:3000/login", {
         emailId,
         password
-      },{
-        withCredentials:true
+      }, {
+        withCredentials: true
       });
 
       // Handle successful login
       dispatch(addUser(res.data))
-       navigate('/')
-      
+      navigate('/')
+
     } catch (err) {
       if (err.response) {
-        // Server responded with a status outside 2xx
-        console.error("Server error:", err.response.status, err.response.data);
+        console.error("Server error:", err.response.status, err.response.data)
 
-        // Optional: Show user-friendly messages
         if (err.response.status === 401) {
-          alert("Invalid email or password.");
+          setErrorMessage("Invalid email or password.")
         } else if (err.response.status === 500) {
-          alert("Server error. Please try again later.");
+          setErrorMessage("Server error. Please try again later.")
         } else {
-          alert("Something went wrong. Please try again.");
+          setErrorMessage("Something went wrong. Please try again.")
         }
-
-      } else if (err.request) {
-        // Request was made but no response received
-        console.error("No response from server:", err.request);
-        alert("No response from server. Check your internet connection.");
-
       } else {
-        // Something else happened while setting up the request
-        console.error("Error setting up request:", err.message);
-        alert("Unexpected error occurred.");
+        // No response from server
+        setErrorMessage("Unable to connect to the server.")
       }
     }
-
   }
   return (
     <div className="w-full max-w-md px-4 py-6 sm:px-6 sm:py-8 bg-gray-800 rounded-lg shadow-2xl">
@@ -82,6 +73,9 @@ const Login = () => {
             onChange={(e) => setPassword(e.target.value)}
           />
         </div>
+        {errorMessage && (
+          <p className="mt-2 text-red-600 text-sm">{errorMessage}</p>
+        )}
         <div className="flex justify-between">
           <label className="label cursor-pointer">
             <input type="checkbox" className="checkbox checkbox-primary mr-2" />

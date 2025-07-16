@@ -1,10 +1,31 @@
-import { useSelector } from "react-redux";
-import { Link } from 'react-router-dom';
+import { useSelector, useDispatch } from "react-redux";
+import { Link, useNavigate } from 'react-router-dom';
+
+import axios from 'axios'
+import {removeUser} from '../utils/userSlice'
 
 
 const NavBar = () => {
   const user = useSelector((store) => store.user);
- 
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+
+  const handleLogout = async () => {
+    try {
+      await axios.post(
+        "http://localhost:3000/logout",
+        {},
+        { withCredentials: true } // <- Important to send the cookie
+      )
+      dispatch(removeUser())
+      navigate('/login')
+    } catch (error) {
+      console.error("Logout failed", error)
+      alert("Logout failed")
+    }
+  }
+
+
 
   // const isLoggedIn = user; // Adjust based on your actual user structure
 
@@ -38,7 +59,7 @@ const NavBar = () => {
               className="menu menu-sm dropdown-content mt-3 z-[1] w-52 rounded-box bg-base-contentp-2 shadow "
             >
               <li>
-                <Link to ="/profile"className="justify-between">
+                <Link to="/profile" className="justify-between">
                   Profile
                   <span className="badge">
                     {user.firstName ? `Welcome! ${user.firstName.charAt(0).toUpperCase()}${user.firstName.slice(1)}` : "Welcome!"}
@@ -48,7 +69,12 @@ const NavBar = () => {
                 </Link>
               </li>
               <li><Link to="setting">Settings</Link></li>
-              <li><a>Logout</a></li>
+              <li>
+                <button onClick={handleLogout} className=" text-white rounded">
+                  Logout
+                </button>
+
+              </li>
             </ul>
           </div>
         </div>
