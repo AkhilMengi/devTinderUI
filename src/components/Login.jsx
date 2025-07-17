@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
 import { addUser } from '../utils/userSlice';
-import { useNavigate } from 'react-router-dom';
+import { Link,useNavigate } from  'react-router-dom';
 
 
 const Login = () => {
@@ -95,9 +95,9 @@ const Login = () => {
       </form>
       <p className="mt-4 text-center text-sm text-neutral">
         Don&apos;t have an account?{' '}
-        <a href="#" className="text-primary hover:underline">
+        <Link to="/signup" className="text-primary hover:underline">
           Sign up
-        </a>
+        </Link>
       </p>
 
     </div>

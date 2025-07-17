@@ -1,6 +1,6 @@
 import axios from "axios"
 import { useDispatch, useSelector } from "react-redux"
-import { addFeed } from "../utils/Feed"
+import { addFeed } from "../utils/FeedSlice"
 import { useEffect, useState } from "react"
 import FeedCard from "./FeedCard"
 
@@ -14,32 +14,28 @@ const Feed = () => {
       const res = await axios.get("http://localhost:3000/feed", {
         withCredentials: true,
       })
-      dispatch(addFeed(res.data))
+      dispatch(addFeed(res.data.data)) // assuming response is { data: [...] }
     } catch (err) {
       console.error("Error fetching feed:", err)
     } finally {
-      setLoading(false) // ✅ Ensure loading is false regardless of success
+      setLoading(false)
     }
   }
 
   useEffect(() => {
-    if (!feed || !feed.data || feed.data.length === 0) {
-      getFeed()
-    } else {
-      setLoading(false) // ✅ If feed already present, set loading to false
-    }
-  }, [feed])
+    getFeed()
+  }, [])
 
   return (
     <div className="p-4 text-white">
-      <h2 className="text-3xl font-bold mb-6 text-center">🌟 Latest Feed</h2>
-      <div className="space-y-6">
+      <h2 className="text-3xl font-bold mb-6 text-center">🌟 Swipe Feed</h2>
+      <div className="flex justify-center">
         {loading ? (
-          <p className="text-center">Loading...</p>
-        ) : feed?.data?.length > 0 ? (
-          feed.data.map((item, index) => <FeedCard key={index} post={item} />)
+          <p>Loading...</p>
+        ) : feed.length > 0 ? (
+          <FeedCard post={feed[0]} />
         ) : (
-          <p className="text-center text-gray-400">No feed items found.</p>
+          <p className="text-gray-400 text-center">No more profiles to show.</p>
         )}
       </div>
     </div>

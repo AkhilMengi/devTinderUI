@@ -2,11 +2,13 @@ import { useSelector, useDispatch } from "react-redux";
 import { Link, useNavigate } from 'react-router-dom';
 
 import axios from 'axios'
-import {removeUser} from '../utils/userSlice'
+import { removeUser } from '../utils/userSlice'
 
 
 const NavBar = () => {
   const user = useSelector((store) => store.user);
+  const connections = useSelector((store) => store.connection) || []
+  const requests = useSelector((store) => store.request) || []
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
@@ -37,6 +39,47 @@ const NavBar = () => {
           Dev Tinder 👨‍💻🔥👩‍💻
         </a>
       </div>
+
+
+      {user && (
+        <div className="hidden md:flex gap-3 items-center mr-4">
+          {/* Feed */}
+          <Link
+            to="/"
+            className="px-4 py-2 bg-neutral text-white rounded-lg hover:bg-neutral-focus transition-all shadow"
+          >
+            Feed
+          </Link>
+
+          {/* Connections */}
+          <Link
+            to="/connections"
+            className="relative px-4 py-2 bg-neutral text-white rounded-lg hover:bg-neutral-focus transition-all shadow"
+          >
+            Connections
+            {connections.length > 0 && (
+              <span className="absolute -top-2 -right-2 bg-info text-white text-xs px-2 py-0.5 rounded-full shadow-md">
+                {connections.length}
+              </span>
+            )}
+          </Link>
+
+          {/* Requests */}
+          <Link
+            to="/requests/recieved"
+            className="relative px-4 py-2 bg-neutral text-white rounded-lg hover:bg-neutral-focus transition-all shadow"
+          >
+            Requests
+            {requests.length > 0 && (
+              <span className="absolute -top-2 -right-2 bg-warning text-black text-xs px-2 py-0.5 rounded-full shadow-md">
+                {requests.length}
+              </span>
+            )}
+          </Link>
+        </div>
+      )}
+
+
 
       {/* Right side: avatar & dropdown menu */}
       {user && (

@@ -19,7 +19,7 @@ const ConnectionRequestList = () => {
         const res = await axios.get("http://localhost:3000/user/requests", {
           withCredentials: true,
         })
-        console.log(res.data)
+        // console.log(res.data)
         dispatch(setRequests(res.data.data || []))
       } catch (err) {
         console.error("Failed to load connection requests:", err)
@@ -54,7 +54,7 @@ const ConnectionRequestList = () => {
       setTimeout(() => setSuccessMessage(""), 3000);
     } catch (err) {
       console.error("Review failed:", err)
-      alert("Something went wrong while updating request.")
+     
     }
   }
 
