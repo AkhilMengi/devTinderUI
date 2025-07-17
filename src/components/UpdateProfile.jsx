@@ -20,7 +20,7 @@ const UpdateProfile = () => {
     useEffect(() => {
         const fetchProfile = async () => {
             try {
-                const res = await axios.get("http://localhost:3000/profile", {
+                const res = await axios.get("http://localhost:3000/api/profile", {
                     withCredentials: true,
                 })
 
@@ -53,7 +53,7 @@ const UpdateProfile = () => {
 
         try {
             const res = await axios.patch(
-                "http://localhost:3000/update/me",
+                "http://localhost:3000/api/update/me",
                 {
                     lastName,
                     about,

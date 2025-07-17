@@ -15,7 +15,7 @@ const NavBar = () => {
   const handleLogout = async () => {
     try {
       await axios.post(
-        "http://localhost:3000/logout",
+        "http://localhost:3000/api/logout",
         {},
         { withCredentials: true } // <- Important to send the cookie
       )

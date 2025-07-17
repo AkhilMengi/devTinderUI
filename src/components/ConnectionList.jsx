@@ -16,7 +16,7 @@ const ConnectionList = () => {
     // Replace with your actual API call
     const fetchConnections = async () => {
       try {
-        const res = await axios.get("http://localhost:3000/user/connections",{withCredentials: true,}); // ← change endpoint
+        const res = await axios.get("http://localhost:3000/api/user/connections",{withCredentials: true,}); // ← change endpoint
         
         dispatch(addConnections(res.data.data))
       } catch (err) {

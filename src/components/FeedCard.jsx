@@ -10,7 +10,7 @@ const FeedCard = ({ post }) => {
   const handleSwipe = async (userId, status) => {
     try {
       await axios.post(
-        `http://localhost:3000/request/send/${status}/${userId}`,
+        `http://localhost:3000/api/request/send/${status}/${userId}`,
         {},
         { withCredentials: true }
       )
