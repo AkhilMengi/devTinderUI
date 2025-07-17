@@ -16,7 +16,7 @@ const ConnectionRequestList = () => {
   useEffect(() => {
     const fetchRequests = async () => {
       try {
-        const res = await axios.get("http://localhost:3000/api/user/requests", {
+        const res = await axios.get("/api/user/requests", {
           withCredentials: true,
         })
         // console.log(res.data)
@@ -36,7 +36,7 @@ const ConnectionRequestList = () => {
   const handleReview = async (requestId, status) => {
     try {
       const res = await axios.post(
-        `http://localhost:3000/api/request/review/${status}/${requestId}`,
+        `/api/request/review/${status}/${requestId}`,
         {},
         { withCredentials: true }
       )
