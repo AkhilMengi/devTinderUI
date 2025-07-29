@@ -25,7 +25,7 @@ const Chat = () => {
             if (!currentUser || !targetId) return;
 
             try {
-                const res = await axios.get(`${BASE_URL}/api/chat/${targetId}`, {
+                const res = await axios.get(`${BASE_URL}/chat/${targetId}`, {
                     withCredentials: true,
                 });
 
