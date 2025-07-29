@@ -47,7 +47,7 @@ const Body = () => {
   return (
     <div className="flex min-h-screen flex-col bg-base-content text-neutral-content">
       <NavBar /> {/* Only render NavBar if user is set */}
-      <main className="flex-grow flex items-center justify-center bg-gray-900 text-white px-4">
+      <main className=" flex  justify-center bg-gray-900 text-white ">
         <Outlet />
       </main>
       <Footer />

@@ -104,13 +104,10 @@ const Chat = () => {
     };
 
     return (
-  <div className="w-full flex justify-center items-start p-2 pt-4  h-screen">
-    <div
-      className="w-full max-w-5xl bg-gray-900 border border-gray-700 rounded-xl shadow-xl flex flex-col overflow-hidden flex-1"
-      
-    >
+  <div className="min-h-screen flex  justify-center bg-gray-900 mt-3 ">
+      <div className="w-[90vw] max-w-[40rem]  h-[65vh] md:h-[60vh] flex flex-col bg-gray-900 border border-gray-700 rounded-xl shadow-xl overflow-hidden">
       {/* Header */}
-      <div className="p-4 bg-gray-850 border-b border-gray-700 flex items-center justify-between shrink-0">
+      <div className="p-4 bg-gray-850 border-b border-gray-700 flex items-center justify-between">
         <div className="flex items-center gap-3">
           <div className="w-11 h-11 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center text-white font-bold text-lg">
             Hi!
@@ -190,6 +187,7 @@ const Chat = () => {
       </div>
     </div>
   </div>
+
 );
 
 };
