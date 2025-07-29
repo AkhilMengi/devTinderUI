@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { addFeed } from "../utils/FeedSlice"
 import { useEffect, useState } from "react"
 import FeedCard from "./FeedCard"
+import { BASE_URL } from "../utils/constant"
 
 const Feed = () => {
   const dispatch = useDispatch()
@@ -11,7 +12,7 @@ const Feed = () => {
 
   const getFeed = async () => {
     try {
-      const res = await axios.get("/api/feed", {
+      const res = await axios.get( BASE_URL +"/feed", {
         withCredentials: true,
       })
       dispatch(addFeed(res.data.data)) // assuming response is { data: [...] }

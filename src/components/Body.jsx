@@ -5,6 +5,7 @@ import Footer from './Footer';
 import axios from 'axios';
 import { addUser } from '../utils/userSlice';
 import { useDispatch, useSelector } from 'react-redux';
+import { BASE_URL } from '../utils/constant';
 
 const Body = () => {
   const dispatch = useDispatch();
@@ -16,7 +17,7 @@ const Body = () => {
     if(user) return
 
     try {
-      const res = await axios.get('/api/profile', {
+      const res = await axios.get(BASE_URL+'/profile', {
         withCredentials: true,
       });
       dispatch(addUser(res.data.user));

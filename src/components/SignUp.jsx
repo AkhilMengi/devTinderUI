@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { BASE_URL } from "../utils/constant";
 
 const SignUp = () => {
   const [firstName, setFirstName] = useState("");
@@ -21,7 +22,7 @@ const SignUp = () => {
 
     try {
       const res = await axios.post(
-        "/api/signup",
+        BASE_URL +"/signup",
         {
           firstName,
           lastName,

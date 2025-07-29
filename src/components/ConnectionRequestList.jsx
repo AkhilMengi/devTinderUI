@@ -4,6 +4,7 @@ import ConnectionRequestCard from "./ConnectionRequestCard"
 import { useDispatch, useSelector } from "react-redux"
 import { setRequests, removeRequest } from "../utils/requestSlice"
 import { addConnections } from "../utils/connectionSlice"
+import { BASE_URL } from "../utils/constant"
 
 const ConnectionRequestList = () => {
   const dispatch = useDispatch()
@@ -16,7 +17,7 @@ const ConnectionRequestList = () => {
   useEffect(() => {
     const fetchRequests = async () => {
       try {
-        const res = await axios.get("/api/user/requests", {
+        const res = await axios.get(BASE_URL +"/user/requests", {
           withCredentials: true,
         })
         // console.log(res.data)
@@ -36,7 +37,7 @@ const ConnectionRequestList = () => {
   const handleReview = async (requestId, status) => {
     try {
       const res = await axios.post(
-        `/api/request/review/${status}/${requestId}`,
+        `${BASE_URL}/request/review/${status}/${requestId}`,
         {},
         { withCredentials: true }
       )

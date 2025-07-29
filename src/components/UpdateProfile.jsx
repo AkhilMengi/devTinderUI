@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react"
 import axios from "axios"
 import { useDispatch, useSelector } from "react-redux"
 import { addUser } from "../utils/userSlice"
+import { BASE_URL } from "../utils/constant"
 
 const UpdateProfile = () => {
     const [firstName, setFirstName] = useState("")
@@ -20,7 +21,7 @@ const UpdateProfile = () => {
     useEffect(() => {
         const fetchProfile = async () => {
             try {
-                const res = await axios.get("/api/profile", {
+                const res = await axios.get(BASE_URL +"/profile", {
                     withCredentials: true,
                 })
 
@@ -53,7 +54,7 @@ const UpdateProfile = () => {
 
         try {
             const res = await axios.patch(
-                "/api/update/me",
+                BASE_URL +"/update/me",
                 {
                     lastName,
                     about,

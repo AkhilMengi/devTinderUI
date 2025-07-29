@@ -10,6 +10,7 @@ import Setting from "./components/Setting"
 import UpdateProfile from "./components/UpdateProfile"
 import ConnectionRequestList from "./components/ConnectionRequestList"
 import ConnectionList from "./components/ConnectionList"
+import Chat from "./components/Chat"
 
 
 
@@ -32,6 +33,7 @@ function App() {
               <Route path="connections" element={<ConnectionList />} />
               
 
+              <Route path="chat/:targetId" element={<Chat />} />
               <Route path="login" element={<Login />} />
               <Route path="signup" element={<SignUp />} />
 

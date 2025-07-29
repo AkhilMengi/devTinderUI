@@ -6,6 +6,7 @@ import axios from "axios";
 import ConnectionRequestCard from "./ConnectionRequestCard";
 import { useDispatch, useSelector } from "react-redux";
 import { addConnections } from "../utils/connectionSlice";
+import { BASE_URL } from "../utils/constant";
 
 const ConnectionList = () => {
   const dispatch = useDispatch()
@@ -16,7 +17,7 @@ const ConnectionList = () => {
     // Replace with your actual API call
     const fetchConnections = async () => {
       try {
-        const res = await axios.get("/api/user/connections",{withCredentials: true,}); // ← change endpoint
+        const res = await axios.get(BASE_URL +"/user/connections",{withCredentials: true,}); // ← change endpoint
         
         dispatch(addConnections(res.data.data))
       } catch (err) {
